@@ -8,7 +8,7 @@ class LoginUseCase(
         val token = repository.login(email, password)
         return if (token != null) {
             storage.saveToken(token)
-            Result.success<String>("Success")
+            Result.success<String>(token)
         } else Result.failure(IllegalArgumentException("Password or email is not correct"))
     }
 }

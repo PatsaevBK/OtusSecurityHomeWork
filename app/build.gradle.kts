@@ -58,5 +58,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation (libs.androidx.material.icons.extended)
+    implementation(libs.appcompat)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.security.crypto)
+    implementation(libs.androidx.biometric.ktx)
 }

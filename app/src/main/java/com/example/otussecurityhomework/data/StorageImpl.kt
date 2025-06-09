@@ -1,12 +1,15 @@
 package com.example.otussecurityhomework.data
 
 import android.content.Context
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.core.content.edit
+import com.example.otussecurityhomework.data.security.Keys
+import com.example.otussecurityhomework.data.security.Security
 import com.example.otussecurityhomework.domain.Storage
 
 private const val SHARED_PREFERENCE_NAME = "RSAEncryptedKeysSharedPreferences"
 private const val ENCRYPTED_TOKEN = "ENCRYPTED_TOKEN"
+
+private const val BIOMETRIC_ENABLED = "BIOMETRIC_ENABLED"
 
 class StorageImpl(
     private val applicationContext: Context,
@@ -48,5 +51,20 @@ class StorageImpl(
             appendLine("Encrypted hash:")
             appendLine(encryptedToken)
         }
+    }
+
+    override fun isLoginBefore(): Boolean {
+        val string = sharedPreferences.getString(ENCRYPTED_TOKEN, null)
+        return string != null
+    }
+
+    override fun changeBiometricEnable(isBiometricEnabled: Boolean) {
+        sharedPreferences.edit {
+            putBoolean(BIOMETRIC_ENABLED, isBiometricEnabled)
+        }
+    }
+
+    override fun isBiometricEnable(): Boolean {
+        return sharedPreferences.getBoolean(BIOMETRIC_ENABLED, true)
     }
 }

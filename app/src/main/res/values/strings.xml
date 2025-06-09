@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OtusSecurityHomeWork</string>
+    <string name="biometric_prompt_title_text">Вход</string>
+    <string name="biometric_prompt_subtitle_text">с помощью биометрии</string>
+    <string name="biometric_prompt_description_text">Отсканируйте отпечаток пальца\n</string>
+    <string name="biometric_prompt_use_password_instead_text">Отмена</string>
 </resources>

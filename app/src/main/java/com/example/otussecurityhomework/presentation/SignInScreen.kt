@@ -1,5 +1,8 @@
-package com.example.otussecurityhomework
+package com.example.otussecurityhomework.presentation
 
+import androidx.activity.compose.LocalActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,24 +24,27 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.otussecurityhomework.R
 
 @Composable
-fun LoginScreen(
+fun SignInScreen(
     modifier: Modifier = Modifier,
     viewModel: LoginScreenViewModel
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalActivity.current as AppCompatActivity
+    val state by viewModel.state.collectAsState()
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -63,6 +69,23 @@ fun LoginScreen(
             }
         ) {
             Text(text = "Sign in")
+        }
+
+        if (state.isBiometricAvailable && state.isLoginBefore && state.isBiometricEnable) {
+            Button(
+                onClick = {
+                    if (state.isRegisterBiometric) {
+                        viewModel.authenticateBiometricUser(context)
+                    } else {
+                        viewModel.registerUserBiometric(context)
+                    }
+                }
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.material_symbols_outlined_fingerprint),
+                    contentDescription = "Finger print"
+                )
+            }
         }
     }
 }

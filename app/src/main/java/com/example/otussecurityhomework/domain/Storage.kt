@@ -7,4 +7,10 @@ interface Storage {
     fun getToken(): String?
 
     fun getTokenWithHash(): String?
+
+    fun isLoginBefore(): Boolean
+
+    fun changeBiometricEnable(isBiometricEnabled: Boolean)
+
+    fun isBiometricEnable(): Boolean
 }

@@ -1,4 +1,4 @@
-package com.example.otussecurityhomework.data
+package com.example.otussecurityhomework.data.security
 
 import android.content.Context
 import android.content.SharedPreferences

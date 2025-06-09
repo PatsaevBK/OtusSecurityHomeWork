@@ -1,4 +1,4 @@
-package com.example.otussecurityhomework.data
+package com.example.otussecurityhomework.data.security
 
 import android.util.Base64
 import java.security.spec.AlgorithmParameterSpec
